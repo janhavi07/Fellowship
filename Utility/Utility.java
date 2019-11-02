@@ -1,7 +1,11 @@
 package Utility;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
-import FunctionalPrograms.Windchill;
+import AlogarithmPrograms.*;
+import FunctionalPrograms.*;
 
 import LogicalProgram.*;
 public class Utility 
@@ -9,6 +13,7 @@ public class Utility
 	public static Scanner s=new Scanner(System.in);
 	public static char[][] board=new char[3][3];
 	public static char turn='X';
+	//public static String[] words_of_file=new String[1000];
 	//reading all integer input
 	public static int readInt()
 	{
@@ -159,11 +164,105 @@ public class Utility
 	   
    }
 
-public static String[] wordsToArray()
+public static String[] wordsToArray() throws FileNotFoundException
 {
+	File file=new File("/home/admin142/Desktop/Janhavi/text");
+	Scanner sc=new Scanner(file);
+	sc.useDelimiter(" ");
+	String storeAs="";
+	while(sc.hasNext())
+	{
+		storeAs=storeAs+sc.next()+" ";
+	}
+	String[] words_of_file=storeAs.split(" ");
 	return words_of_file;
 }
+ public static void binaryStringSearch(String[] word_of_file,String search)
+{
+	
+	int low=0;
+	int high=word_of_file.length-1;
+	while(low<=high)
+	{
+		int mid=(high+low)/2;
+		
+		int compare_value=search.compareTo(word_of_file[mid]);
+		if(compare_value==0) {
+			System.out.println("element found at position " +(mid+1));
+		    break;}
+		if(compare_value>0)
+		   low=mid+1;
+		if(compare_value<0)
+			high=mid-1;
+		
+	}
+	
+}
 
+
+public static char[] convertToLowerCase(String s1)
+{
+	char[] charArray=s1.toLowerCase().toCharArray();
+	return charArray;
+}
+
+public static boolean anagramLogic(char[] charArray1, char[] charArray2) {
+	
+	Arrays.sort(charArray1);
+	Arrays.sort(charArray2);
+	if(Arrays.equals(charArray1, charArray2))
+	return true;
+	else
+	return false;
+	
+}
+
+
+public static void prime(int lower,int upper)
+{
+	for(int i=lower;i<=upper;i++)
+	{
+		if(i==0 || i==1)
+			continue;
+	 int flag=1;
+		for(int j=2;j<=i/2;j++)
+		{
+			if(i%j==0)
+			{
+				flag=0;
+				break;
+			}
+		}
+		if(flag==1)
+		{
+		System.out.print(" " +i);
+	    }
+	}
+}
+
+public static void guessGame(int n)
+{
+	int low=0;
+	int high=n-1;
+	int mid=0;
+	while(low<=high)
+	{
+		mid=(low+high)/2;
+		System.out.println("is your number greater than " +mid+ " ,if yes type 1 else 0 " );
+		int secret=Utility.readInt();
+		 if(secret==1)
+			low=mid+1;
+		 else if(secret==0)
+			high=mid-1;
+		 else if(low==(high+1))
+				System.out.println("Element is "+high);
+				break;	
+	}
+	System.out.println("mid is "+mid);
+	System.out.println("low is "+low);
+	System.out.println("high is "+high);
+	
+}
 
 
 
