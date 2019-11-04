@@ -1,8 +1,8 @@
-package AlogarithmPrograms;
+package JUnitPrograms;
 
 import java.util.Scanner;
 
-public class binarynibble 
+public class Binarynibble 
 {
 static void swap(int number)
 {
