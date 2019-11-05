@@ -436,7 +436,7 @@ public static void printArray(int[] array)
 	}
 }
 /**
- * Thsi funtion is used to merge the sorted elements into a sorted array.
+ * This function is used to merge the sorted elements into a sorted array.
  * @param left
  * @param right
  * @param finalarray
@@ -544,7 +544,27 @@ public static String patternMatcher(Userdetails user ) throws Exception
 	
 }
 
+public static void arrayOfObjects(TaskDetails[] details)
+{
+   for(int i=0;i<details.length;i++)
+	   details[i]=new TaskDetails(); //Allocating memory to the details.
+   for(int i=0;i<details.length;i++)
+   {
+	   System.out.println("Enter the details");
+	   details[i].getData();
+   }
+   for(int i=0;i<details.length;i++)
+   {
+	   details[i].putdata();
+   }
+	
+}
 
+public static void putWordsintoLinkedList(String[] words_of_file )
+{
+	
+	
+}
 
 
 }
