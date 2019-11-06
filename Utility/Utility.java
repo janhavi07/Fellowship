@@ -2,6 +2,7 @@ package Utility;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,11 +58,232 @@ public class Utility
 	{
 		return s.nextFloat();
 	}
-	
+	 /**
+	  * to find the roots of the equation a*x^2 + b*x + c.
+	  * @param a
+	  * @param b
+	  * @param c
+	  */
+	public static void quadraticRoots(int a,int b,int c)
+	{
+		int delta=b*b-4*a*c;
+		double root1=(-b + Math.sqrt(delta))/(2*a);
+		double root2= (-b -Math.sqrt(delta))/(2*a);
+		System.out.println("ROOTS ARE " +root1+ " and " +root2);
+
+	}
 	/**
-	 * Tic-tac-toe program
-	 * Purpose: print the 3x3 Board
+	 * prints the Euclidean distance from the point (x, y) to the origin (0, 0).
+	 * @param x
+	 * @param y
 	 */
+	public static void distance(int x,int y)
+	{
+		double distance;
+		double distance1 =(Math.pow(x, 2)+Math.pow(y, 2));
+		distance=Math.sqrt(distance1);
+		System.out.println("distance is :" +distance);
+	}
+	/**
+	 * Read in N integers and counts the   number of triples that sum to exactly 0.
+
+	 * @param number
+	 * @param l
+	 */
+	public static void sumToZero(int[] number, int l)
+	{
+		for(int i=0;i<l-2;i++)
+		{
+			for(int j=i+1;i<l-1;i++)
+			{
+				for(int k=j+1;k<l;k++)
+				{
+					if(number[i]+number[j]+number[k]==0)
+					{
+						System.out.print( number[i]);
+						System.out.print("");
+						System.out.print(" "+number[j]);
+						System.out.print("");
+						System.out.print(" " +number[k]);
+						System.out.print("");
+						System.out.println();
+					}
+				}
+			}
+		}
+	}
+	/**
+	 * Given N distinct Coupon Numbers, how many random numbers 
+	 * do you need to generate distinct coupon number? 
+	 * This program simulates this random process.
+
+	 * @param array
+	 * @param length
+	 */
+public static void randomCount(int[] array,int length)
+{
+	Random r=new Random();//used to generate pseudo-random numbers in java.
+	int random_count=0;
+	for(int i=0;i<array.length;i++)
+	{
+		int randomno=r.nextInt(10);
+		/**
+		returns a pseudo random, uniformly distributed int value between 
+		0 (inclusive) and the specified value (exclusive),*/
+		if(randomno==array[i])
+		{
+			random_count++;
+		}
+	}
+	System.out.println("Random counts : " +random_count);
+	
+}
+/**
+ * Function that takes a date as input and prints the day of 
+ * the week that date falls on.
+ * @param m
+ * @param d
+ * @param y
+ */
+public static void dayOfWeek(int m,int d,int y)
+{
+	
+	float y0 = y - (14 - m)/12;
+	float x = y0 + y0/4 - y0/100 + y0/400;
+	float m0 = m + 12 *((14 - m) /12) - 2;
+	float d0 = (d+x +31*m0 /12)%7;
+	int d00=(int)d0;
+    //System.out.println(d0);
+
+    switch(d00)
+    {
+    case 0:
+          System.out.println("Sunday");
+          break;
+    case 1:
+    	  System.out.println("Monday");
+    	  break;
+    case 2:
+    	System.out.println("TUesday");
+    	break;
+    case 3:
+    	System.out.println("Wednesday");
+    	break;
+    case 4:
+    	System.out.println("THursday");
+    	break;
+    case 5:
+    	System.out.println("Friday");
+    	break;
+    case 6:
+    	System.out.println("Saturday");
+    	break;
+    	
+    }
+
+}
+
+/**
+ * Swap nibbles and find the new number.
+ * @param number
+ */
+public static void swapNibble(int number)
+{
+	int newnum;
+	newnum=((number & 0x0F)<<4 | (number & 0xF0)>>4);
+	/* In the above Formula the binary format which is being returned is first AND with binary 0F
+	 *left shift operator is used with is ORed with another binary ANDed with F0 and with a left shift operator.  
+	 * 
+	 */
+	System.out.println("number after nibble swapping :" +newnum);
+}
+	/**
+	 *  calculates the monthly payments you would have 
+	 *  to make over Y years to pay off a P principal 
+	 *  loan amount at R per cent interest compounded monthly.
+	 * @param p
+	 * @param y
+	 * @param r
+	 */
+public static void monthlyPayment(int p,int y,float r)
+{
+	double n=12*y;
+	float r1=r/12*100;
+	double payment=p*r1/(1-Math.pow(1+r1, -n));
+	System.out.println("Payement is : " +payment);
+	System.out.println("Round off payment : " +Math.round(payment));
+}
+/**
+ * Given the temperature in fahrenheit as input outputs the temperature 
+ * in Celsius or viceversa using the formula
+
+ * @param d
+ * @param t
+ */
+	public static void tempConvertor(String d,float t)
+	{
+		switch(d)
+		{
+		case "c"://If it has inputed in Celsius the it prints the value in Fahrenhite
+			float f= t*9/5 + 32 ;
+			System.out.println("TEMPERATURE IN FAHRENHITE IS :" +f);
+			break;
+		case "f"://If it has inputed in Fahrenhite the it prints the value in  Celsius
+			float c=(t-32)*5/9;
+			System.out.println("TEMPERATURE IN CELSIUS IS : " +c);
+			break;
+		
+		}
+	}
+	/**
+	 * Fewest Notes to be returned for Vending Machine
+	 * @param money
+	 * @throws Exception
+	 */
+	public static void vendingMachine(int money) throws Exception
+	{
+		int[] cash= {1000,500,100,50,20,10,5,2};
+		int[] counter=new int[8];
+		int no_count=0;
+		System.out.println(" ***WITHDRAWING*** ");
+		Thread.sleep(6000);
+ 		if(money>10000)
+		{
+			System.out.println("ou cant withdraw amount greater than 10000 ");
+		}
+		
+		else
+		{
+			for(int i=0;i<8;i++)
+			{
+				if(money>=cash[i])
+				{
+					counter[i]=money/cash[i];
+					money=money-counter[i]*cash[i];		
+					no_count++;
+				}
+			}
+			
+		}
+ 		System.out.println("AMOUNT :NO OF NOTES " );
+ 		for(int i=0;i<no_count;i++)
+ 		{
+ 			System.out.println(cash[i]+ " : "+ counter[i]);
+ 		}
+ 		int sum=0;
+ 	
+		for(int i=0;i<counter.length;i++)
+		{
+			sum=sum+counter[i];
+		}
+		System.out.println("So the total no of notes are you have withdrawed is : " +sum);
+	}
+	
+	
+ /**
+ * Tic-tac-toe program
+ * Purpose: print the 3x3 Board
+ */
     public static void ticTacToe()
      {
 	

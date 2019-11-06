@@ -1,4 +1,6 @@
 package DataStructuresPrograms;
+import java.io.FileWriter;
+
 import Utility.*;
 
 public class LinkedList <T>
@@ -85,6 +87,12 @@ public class LinkedList <T>
 		  System.out.println(" '*Therefore we are adding to the list*' ");
 		  System.out.println("Now,");
 		  addAtEnd(wordToSearch);
+		  try {
+			printListIntoFile();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 		
 	}
@@ -109,6 +117,20 @@ public class LinkedList <T>
 		System.out.println();
 		System.out.println("After deleting the element ");
 		printLinkedList();
+		
+	}
+	public <T> void printListIntoFile() throws Exception
+	{
+		FileWriter file=new FileWriter("/home/admin142/Desktop/Janhavi/text");
+		Node toTransverse=head;
+		while(toTransverse.next!=null)
+		{
+			file.write(toTransverse.word + " ");
+			toTransverse=toTransverse.next;
+		}
+		file.write(toTransverse.word);
+		file.close();
+
 		
 	}
 	
